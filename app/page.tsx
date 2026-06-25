@@ -1,65 +1,366 @@
-import Image from "next/image";
+import Link from "next/link";
+import Card from "@/components/card";
+
+import coolingSystem from "@/public/cooling-system.png";
+import dynoTuning from "@/public/dyno-tuning.png";
+import ecuTuning from "@/public/ecu-tuning.png";
+
+const EXPERTISE = [
+  {
+    title: "General Maintenance",
+    description: "Factory-spec service with the care your car deserves.",
+    image: coolingSystem,
+  },
+  {
+    title: "Performance Upgrades",
+    description: "More power, better handling — built for the street or track.",
+    image: dynoTuning,
+  },
+  {
+    title: "Diagnostics & Repair",
+    description: "Pinpoint any fault fast with our full OBD-II suite.",
+    image: ecuTuning,
+  },
+];
+
+const STATS = [
+  { stat: "25+", label: "Years in NYC" },
+  { stat: "1,000+", label: "Cars Serviced" },
+  { stat: "50+", label: "Marques Covered" },
+  { stat: "4.5★", label: "Average Rating" },
+];
+
+const ADVANTAGES = [
+  {
+    number: 1,
+    title: "NYC Specialists",
+    body: "We know the roads, the climate, and the demands of driving in the five boroughs.",
+  },
+  {
+    number: 2,
+    title: "No BS Pricing",
+    body: "Transparent quotes up front. No hidden labour fees, no surprise line items.",
+  },
+  {
+    number: 3,
+    title: "Dealer-Level Tech",
+    body: "Factory scan tools and trained technicians across European, Asian, and domestic marques.",
+  },
+  {
+    number: 4,
+    title: "Fast Turnaround",
+    body: "Most jobs same-day or next-day. We respect your time as much as your car.",
+  },
+];
+
+function CTAButton({
+  href,
+  variant,
+  children,
+}: {
+  href: string;
+  variant: "primary" | "ghost";
+  children: React.ReactNode;
+}) {
+  const base =
+    "group/button relative inline-flex items-center justify-center overflow-hidden rounded-md px-8 py-3.5 transition-all duration-300 ease-in-out hover:scale-110 border border-white/20 cursor-pointer";
+  const styles =
+    variant === "primary"
+      ? `${base} bg-cyan-400 text-black hover:shadow-xl hover:shadow-cyan-400/50`
+      : `${base} bg-gray-800/30 backdrop-blur-lg text-white hover:shadow-xl hover:shadow-gray-600/50`;
+
+  return (
+    <Link href={href} className={styles}>
+      <span className="text-xs font-bold uppercase tracking-widest">
+        {children}
+      </span>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]"
+      >
+        <div className="relative h-full w-10 bg-white/30" />
+      </div>
+    </Link>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      aria-hidden="true"
+      className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3"
+    >
+      {children}
+    </p>
+  );
+}
+
+function StatBar() {
+  return (
+    <div className="border-y border-white/[0.06] bg-gray-700/[0.7] py-10 px-8 md:px-16 bg-white/[0.06]">
+      <dl className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 text-center">
+        {STATS.map(({ stat, label }, i) => (
+          <div
+            key={label}
+            className={`
+              py-4 px-8
+              ${i % 2 !== 0 ? "border-l border-white/[0.06]" : ""}
+              ${i >= 2 ? "border-t border-white/[0.06] md:border-t-0" : ""}
+              md:border-l md:first:border-l-0
+            `}
+          >
+            <dd className="text-4xl md:text-5xl font-black text-[#00f0ff] leading-none">
+              {stat}
+            </dd>
+            <dt className="text-gray-500 text-xs uppercase tracking-widest mt-2 font-mono">
+              {label}
+            </dt>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+function BottomCTA() {
+  return (
+    <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00f0ff]/5 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00f0ff]/8 blur-[100px] rounded-full"
+      />
+      <div className="relative">
+        <p
+          aria-hidden="true"
+          className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4"
+        >
+          Let's get started
+        </p>
+        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
+          Your Car Deserves <span className="text-[#00f0ff]">Better.</span>
+        </h2>
+        <Link
+          href="/support"
+          className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
+        >
+          Book Now
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:translate-x-1"
+          >
+            →
+          </span>
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="text-white overflow-x-hidden">
+      {/* HERO */}
+      <section
+        aria-label="Hero"
+        className="relative min-h-[100dvh] flex items-center"
+      >
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/GTR drive.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+          title="Decorative background video of a car driving"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#080808] to-transparent"
+        />
+
+        <div className="relative z-10 px-8 md:px-20 max-w-5xl">
+          <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-5">
+            New York City — Full Service Auto Shop
           </p>
+
+          <h1 className="text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter">
+            Built for <span className="text-[#00f0ff]">Drivers.</span>
+            <br />
+            Not Just Cars.
+          </h1>
+
+          <p className="mt-6 text-gray-300 text-base md:text-lg max-w-lg leading-relaxed font-light">
+            Precision repairs, honest pricing, and performance upgrades —
+            serving NYC drivers who actually care about their machines.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4 items-center">
+            <CTAButton href="/support" variant="primary">
+              Contact us
+            </CTAButton>
+            <CTAButton href="/gallery" variant="ghost">
+              Featured Builds
+            </CTAButton>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* EXPERTISE */}
+      <section
+        aria-labelledby="expertise-heading"
+        className="max-w-[1400px] mx-auto px-8 md:px-16 py-32"
+      >
+        <div className="mb-14">
+          <SectionLabel>What we're good at</SectionLabel>
+          <div className="flex items-end justify-between border-b border-white/[0.07] pb-6">
+            <h2
+              id="expertise-heading"
+              className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none"
+            >
+              Our Expertise
+            </h2>
+            <Link
+              href="/services"
+              className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors duration-300 group"
+            >
+              All Services
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </Link>
+          </div>
         </div>
-      </main>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {EXPERTISE.map((item, i) => (
+            <div
+              key={item.title}
+              className={i === 1 ? "md:scale-[1.03] md:z-10 relative" : ""}
+            >
+              <Card
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                link="/services"
+                variant="service"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex md:hidden justify-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 transition-colors px-8 py-3 text-xs font-bold uppercase tracking-widest"
+          >
+            All Services
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
+      <StatBar />
+
+      {/* RPM ADVANTAGE */}
+      <section
+        aria-labelledby="advantage-heading"
+        className="max-w-[1400px] mx-auto px-8 md:px-16 py-32"
+      >
+        <div className="mb-14">
+          <SectionLabel>Why choose us</SectionLabel>
+          <h2
+            id="advantage-heading"
+            className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
+          >
+            The <span className="italic text-[#14007e]">RPM</span>{" "}
+            <span className="font-rocksalt text-[#9d9d9b] text-3xl md:text-4xl">
+              nyc
+            </span>{" "}
+            Advantage
+          </h2>
+        </div>
+
+        <div className="relative py-4">
+          <div
+            aria-hidden="true"
+            className="absolute left-[28px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#00f0ff]/30 to-transparent md:hidden"
+          />
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none">
+            {ADVANTAGES.map((item) => (
+              <li
+                key={item.number}
+                className="relative group flex gap-5 p-7 rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.04] to-transparent hover:border-[#00f0ff]/30 hover:from-[#00f0ff]/[0.05] transition-all duration-500 cursor-default"
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ boxShadow: "inset 0 0 40px 0 rgba(0,240,255,0.04)" }}
+                />
+
+                <div className="flex-shrink-0 flex flex-col items-center gap-2 pt-1">
+                  <div className="w-8 h-8 rounded-full border border-[#00f0ff]/40 bg-[#00f0ff]/10 flex items-center justify-center group-hover:bg-[#00f0ff]/20 group-hover:border-[#00f0ff]/70 transition-all duration-300">
+                    <svg
+                      className="w-3.5 h-3.5 text-[#00f0ff]"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 7l3.5 3.5L12 3.5"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    className="flex-1 w-px bg-gradient-to-b from-[#00f0ff]/20 to-transparent"
+                  />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span
+                      aria-hidden="true"
+                      className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#00f0ff]/60"
+                    >
+                      {String(item.number).padStart(2, "0")}
+                    </span>
+                    <div
+                      aria-hidden="true"
+                      className="h-px flex-1 bg-white/[0.06]"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold uppercase tracking-tight text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400 transition-colors duration-300">
+                    {item.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <BottomCTA />
     </div>
   );
 }
