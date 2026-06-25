@@ -136,43 +136,24 @@ export default function Gallery() {
       {/* ── LIGHTBOX ── */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[2000] bg-black/90 backdrop-blur-md flex items-center justify-center p-6"
           onClick={() => setLightbox(null)}
         >
           <div
-            className="relative flex flex-col w-full h-full md:h-auto md:max-w-4xl rounded-2xl overflow-hidden bg-[#111]"
+            className="relative max-w-4xl w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top bar */}
-            <div className="flex items-center justify-between px-4 py-3 md:hidden">
-              <div>
-                <span className="inline-block bg-[#00f0ff] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mr-2">
-                  {lightbox.tag}
-                </span>
-                <span className="text-white text-sm">{lightbox.alt}</span>
-              </div>
-              <button
-                onClick={() => setLightbox(null)}
-                className="text-gray-400 hover:text-white transition-colors text-xs uppercase tracking-widest font-mono cursor-pointer"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Image */}
-            <div className="relative flex-1 md:flex-none md:w-full md:max-h-[80vh] md:aspect-video">
+            <div className="relative w-full max-h-[80vh] aspect-video">
               <Image
                 src={lightbox.src}
                 alt={lightbox.alt}
                 fill
                 decoding="async"
                 draggable={false}
-                className="object-contain"
+                className="object-contain rounded-xl"
               />
             </div>
-
-            {/* Caption row — desktop only */}
-            <div className="hidden md:flex px-4 py-3 items-center justify-between">
+            <div className="mt-3 flex items-center justify-between">
               <div>
                 <span className="inline-block bg-[#00f0ff] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mr-2">
                   {lightbox.tag}
