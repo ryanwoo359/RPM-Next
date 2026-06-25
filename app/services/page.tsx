@@ -45,7 +45,7 @@ const serviceCategories = [
         link: "#",
       },
       {
-        title: "ECU Diagnostics",
+        title: "ECU Diagnostic",
         image: ecuTuning,
         description:
           "Full OBD-II scanning and fault code analysis across all modules.",
