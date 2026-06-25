@@ -13,6 +13,8 @@ import picture2 from "@/public/picture2.webp";
 import whitegtr from "@/public/whitegtr.webp";
 import purpleCar from "@/public/purple_car.webp";
 import work from "@/public/work.webp";
+import pink from "@/public/pinkWRX.webp";
+import blue from "@/public/blueGTR.webp";
 
 type GalleryItem = {
   src: StaticImageData;
@@ -23,9 +25,11 @@ type GalleryItem = {
 
 const items: GalleryItem[] = [
   { src: picture, alt: "Featured build", tag: "Full Build", span: "wide" },
-  { src: unclecar, alt: "Uncle's car", tag: "Custom" },
+  { src: blue, alt: "Sky blue Nissan GTR", tag: "Car Wrap", span: "large" },
   { src: blackcar, alt: "Black Car", tag: "Aesthetic", span: "tall" },
   { src: suspension, alt: "Suspension work", tag: "Suspension" },
+  { src: unclecar, alt: "Army Green Nissan GTR", tag: "Car Wrap" },
+  { src: pink, alt: "Pink WRX STI Sports Wagon", tag: "Car Wrap" },
   {
     src: fabrication,
     alt: "Fabrication work",
@@ -136,23 +140,22 @@ export default function Gallery() {
       {/* ── LIGHTBOX ── */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-[2000] bg-black/90 backdrop-blur-md flex items-center justify-center p-6"
+          className="fixed inset-0 z-[2000] bg-black/90 backdrop-blur-md flex items-center justify-center p-6 opacity-100 transition-opacity duration-300"
           onClick={() => setLightbox(null)}
         >
           <div
-            className="relative max-w-4xl w-full"
+            className="relative max-w-4xl w-full scale-100 opacity-100 transition-all duration-300"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full max-h-[80vh] aspect-video">
-              <Image
-                src={lightbox.src}
-                alt={lightbox.alt}
-                fill
-                decoding="async"
-                draggable={false}
-                className="object-contain rounded-xl"
-              />
-            </div>
+            <Image
+              decoding="async"
+              loading="lazy"
+              draggable="false"
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full max-h-[80vh] object-contain rounded-xl"
+            />
+
             <div className="mt-3 flex items-center justify-between">
               <div>
                 <span className="inline-block bg-[#00f0ff] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mr-2">
@@ -160,6 +163,7 @@ export default function Gallery() {
                 </span>
                 <span className="text-white text-sm">{lightbox.alt}</span>
               </div>
+
               <button
                 onClick={() => setLightbox(null)}
                 className="text-gray-500 hover:text-white transition-colors text-xs uppercase tracking-widest font-mono cursor-pointer"
