@@ -15,6 +15,7 @@ import purpleCar from "@/public/purple_car.webp";
 import work from "@/public/work.webp";
 import pink from "@/public/pinkWRX.webp";
 import blue from "@/public/blueGTR.webp";
+import gr86 from "@/public/BlueGr86.webp";
 
 type GalleryItem = {
   src: StaticImageData;
@@ -27,6 +28,7 @@ const items: GalleryItem[] = [
   { src: picture, alt: "Featured build", tag: "Full Build", span: "wide" },
   { src: blue, alt: "Sky blue Nissan GTR", tag: "Car Wrap", span: "large" },
   { src: blackcar, alt: "Black Car", tag: "Aesthetic", span: "tall" },
+  { src: gr86, alt: "Blue GR86", tag: "Aesthetic" },
   { src: suspension, alt: "Suspension work", tag: "Suspension" },
   { src: unclecar, alt: "Army Green Nissan GTR", tag: "Car Wrap" },
   { src: pink, alt: "Pink WRX STI Sports Wagon", tag: "Car Wrap" },
