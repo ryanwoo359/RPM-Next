@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "@/components/card";
+import EmployeeCard from "@/components/card/EmployeeCard";
 
 import tommie from "@/public/tommie.webp";
 import storeFront from "@/public/rpm-storefront.webp";
@@ -190,13 +190,11 @@ export default function About() {
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((member, i) => (
-            <Card
+            <EmployeeCard
               key={`${member.title}-${i}`}
               title={member.title}
               role={member.role}
-              description={member.description}
               image={member.image}
-              variant="employee"
             />
           ))}
         </div>

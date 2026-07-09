@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "@/components/card";
+import ServiceCard from "@/components/card/ServiceCard";
 import { type StaticImageData } from "next/image";
 
 // Diagnostics & Tuning
@@ -227,13 +227,12 @@ export default function Services() {
             {/* Cards grid */}
             <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {category.services.map((service, i) => (
-                <Card
+                <ServiceCard
                   key={`${service.title}-${i}`}
                   title={service.title}
                   description={service.description}
                   image={service.image}
                   link={service.link}
-                  variant="service"
                 />
               ))}
             </div>

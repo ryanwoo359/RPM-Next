@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "@/components/card";
+import ServiceCard from "@/components/card/ServiceCard";
 
 import coolingSystem from "@/public/cooling-system.png";
 import dynoTuning from "@/public/dyno-tuning.png";
@@ -200,8 +200,8 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 text-gray-300 text-base md:text-lg max-w-lg leading-relaxed font-light">
-            Precision repairs, honest pricing, and performance upgrades —
-            serving NYC drivers who actually care about their machines.
+            Precision repairs, honest pricing, and performance upgrades, serving
+            NYC drivers who actually care about their machines.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 items-center">
@@ -250,12 +250,11 @@ export default function Home() {
               key={item.title}
               className={i === 1 ? "md:scale-[1.03] md:z-10 relative" : ""}
             >
-              <Card
+              <ServiceCard
                 title={item.title}
                 description={item.description}
                 image={item.image}
                 link="/services"
-                variant="service"
               />
             </div>
           ))}
