@@ -151,17 +151,27 @@ export default function Gallery() {
           onClick={() => setLightbox(null)}
         >
           <div
-            className="relative max-w-4xl w-full scale-100 opacity-100 transition-all duration-300"
+            className="relative w-full max-w-6xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={lightbox.src}
-              alt={lightbox.alt}
-              sizes="(min-width: 944px) 896px, 100vw"
-              placeholder="blur"
-              draggable={false}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
-            />
+            {/* Box matches the photo's shape: as wide as possible while leaving room for padding + caption */}
+            <div
+              className="relative mx-auto overflow-hidden rounded-xl"
+              style={{
+                aspectRatio: `${lightbox.src.width} / ${lightbox.src.height}`,
+                width: `min(100%, calc((100dvh - 7rem) * ${lightbox.src.width / lightbox.src.height}))`,
+              }}
+            >
+              <Image
+                src={lightbox.src}
+                alt={lightbox.alt}
+                fill
+                sizes="(min-width: 1200px) 1152px, 100vw"
+                placeholder="blur"
+                draggable={false}
+                className="object-cover"
+              />
+            </div>
 
             <div className="mt-3 flex items-center justify-between">
               <div>
