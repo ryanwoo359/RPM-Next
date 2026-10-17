@@ -36,17 +36,14 @@ export default function About() {
     <div className="text-white overflow-x-hidden">
       {/* ── PAGE HEADER ── */}
       <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A3FF]/10 blur-[120px] rounded-full" />
 
-        <p className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
+        <p className="text-[#00A3FF] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
           Who we are
         </p>
 
-        <h1
-          className="animate-fade-up text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
-          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-        >
-          About <span className="text-[#00f0ff]">RPM</span>
+        <h1 className="animate-fade-up text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter">
+          About <span className="text-[#00A3FF]">RPM</span>
           <span className="font-rocksalt text-[#9d9d9b] text-4xl md:text-5xl ml-3">
             nyc
           </span>
@@ -61,7 +58,7 @@ export default function About() {
       <section className="max-w-[1400px] mx-auto px-4 md:px-16 pb-32">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           <div className="flex-1 relative">
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00f0ff]/20 to-transparent" />
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00A3FF]/20 to-transparent" />
             <img
               src={storeFront.src}
               alt="RPM NYC store front"
@@ -69,10 +66,7 @@ export default function About() {
               draggable={false}
             />
             <div className="absolute -bottom-5 -right-5 bg-[#111] border border-white/10 rounded-xl px-5 py-4 hidden md:block">
-              <p
-                className="text-3xl font-black text-[#00f0ff] leading-none"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
+              <p className="text-3xl font-black text-[#00A3FF] leading-none">
                 25+
               </p>
               <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mt-1">
@@ -83,16 +77,13 @@ export default function About() {
 
           <div className="flex-1 space-y-6">
             <div>
-              <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
+              <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
                 Our Story
               </p>
-              <h2
-                className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6 mb-6"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.4] pb-6 mb-6">
                 Born in the Boroughs.
                 <br />
-                <span className="text-[#00f0ff]">Built for the Road.</span>
+                <span className="text-[#00A3FF]">Built for the Road.</span>
               </h2>
             </div>
 
@@ -115,10 +106,7 @@ export default function About() {
                 { stat: "4.5★", label: "Avg Rating" },
               ].map((s) => (
                 <div key={s.label}>
-                  <p
-                    className="text-2xl font-black text-white leading-none"
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                  >
+                  <p className="text-2xl font-black text-white leading-none">
                     {s.stat}
                   </p>
                   <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mt-1">
@@ -135,13 +123,10 @@ export default function About() {
       <section className="border-t border-b border-white/[0.06] bg-[#0c0c0c]">
         <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
           <div className="mb-14">
-            <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
+            <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
               What drives us
             </p>
-            <h2
-              className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6">
               Our Values
             </h2>
           </div>
@@ -152,17 +137,11 @@ export default function About() {
                 key={item.number}
                 className="bg-[#0c0c0c] p-10 group hover:bg-[#111] transition-colors duration-300"
               >
-                <span
-                  className="text-6xl font-black text-white/[0.12] leading-none select-none"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                >
+                <span className="text-6xl font-black text-white/[0.12] leading-none select-none">
                   {item.number}
                 </span>
-                <div className="mt-2 h-px w-8 bg-[#00f0ff] transition-all duration-500 group-hover:w-16" />
-                <h3
-                  className="mt-4 text-xl font-bold uppercase tracking-tight"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                >
+                <div className="mt-2 h-px w-8 bg-[#00A3FF] transition-all duration-500 group-hover:w-16" />
+                <h3 className="mt-4 text-xl font-bold uppercase tracking-tight">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-gray-400 text-sm leading-relaxed">
@@ -177,13 +156,10 @@ export default function About() {
       {/* ── MEET THE TEAM ── */}
       <section className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
         <div className="mb-14">
-          <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
+          <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
             The people behind the work
           </p>
-          <h2
-            className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6">
             Meet the Team
           </h2>
         </div>
@@ -199,32 +175,6 @@ export default function About() {
           ))}
         </div>
       </section>
-
-      {/* ── BOTTOM CTA ── */}
-      <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00f0ff]/5 to-transparent" />
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00f0ff]/8 blur-[100px] rounded-full" />
-        <div className="relative">
-          <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4">
-            Ready to come in?
-          </p>
-          <h2
-            className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Let's Work on <span className="text-[#00f0ff]">Your Car.</span>
-          </h2>
-          <Link
-            href="/support"
-            className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
-          >
-            Book a Service
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }

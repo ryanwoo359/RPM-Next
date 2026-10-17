@@ -30,7 +30,7 @@ export default function EmployeeCard({
         </h3>
 
         {role && (
-          <p className="mt-1 text-sm uppercase text-gray-400 transition-colors duration-300 group-hover:text-[#00f0ff]">
+          <p className="mt-1 text-sm uppercase text-gray-400 transition-colors duration-300 group-hover:text-[#00A3FF]">
             {role}
           </p>
         )}

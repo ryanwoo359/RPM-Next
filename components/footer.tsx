@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* Nav col */}
         <div className="space-y-5">
-          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00f0ff] font-mono">
+          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00A3FF] font-mono">
             Navigate
           </h3>
           <ul className="space-y-3">
@@ -93,7 +93,7 @@ export default function Footer() {
 
         {/* Contact col */}
         <div className="space-y-5">
-          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00f0ff] font-mono">
+          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00A3FF] font-mono">
             Contact
           </h3>
           <ul className="space-y-4 text-sm text-gray-400">
@@ -128,7 +128,7 @@ export default function Footer() {
 
         {/* Hours col */}
         <div className="space-y-5">
-          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00f0ff] font-mono">
+          <h3 className="text-[10px] uppercase tracking-[0.22em] text-[#00A3FF] font-mono">
             Hours
           </h3>
           <ul className="space-y-2 text-sm">
@@ -141,7 +141,7 @@ export default function Footer() {
                 <span className="text-gray-500">{h.day}</span>
                 <span
                   className={
-                    h.hours === "Closed" ? "text-[#00f0ff]/60" : "text-gray-300"
+                    h.hours === "Closed" ? "text-[#00A3FF]/60" : "text-gray-300"
                   }
                 >
                   {h.hours}
@@ -152,7 +152,7 @@ export default function Footer() {
 
           <Link
             href="/support"
-            className="inline-flex items-center gap-2 mt-2 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-5 py-2.5 text-black text-[10px] font-bold uppercase tracking-widest group"
+            className="inline-flex items-center gap-2 mt-2 bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-5 py-2.5 text-black text-[10px] font-bold uppercase tracking-widest group"
           >
             Book a Service
             <span className="transition-transform duration-300 group-hover:translate-x-1">

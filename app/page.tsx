@@ -26,7 +26,7 @@ const EXPERTISE = [
 const STATS = [
   { stat: "25+", label: "Years in NYC" },
   { stat: "1,000+", label: "Cars Serviced" },
-  { stat: "50+", label: "Marques Covered" },
+  { stat: "50+", label: "Services" },
   { stat: "4.5★", label: "Average Rating" },
 ];
 
@@ -66,7 +66,7 @@ function CTAButton({
     "group/button relative inline-flex items-center justify-center overflow-hidden rounded-md px-8 py-3.5 transition-all duration-300 ease-in-out hover:scale-110 border border-white/20 cursor-pointer";
   const styles =
     variant === "primary"
-      ? `${base} bg-cyan-400 text-black hover:shadow-xl hover:shadow-cyan-400/50`
+      ? `${base} bg-[#00A3FF] text-black hover:shadow-xl hover:shadow-[#00A3FF]/50`
       : `${base} bg-gray-800/30 backdrop-blur-lg text-white hover:shadow-xl hover:shadow-gray-600/50`;
 
   return (
@@ -88,7 +88,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <p
       aria-hidden="true"
-      className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-3"
+      className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3"
     >
       {children}
     </p>
@@ -97,7 +97,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function StatBar() {
   return (
-    <div className="border-y border-white/[0.06] bg-gray-700/[0.7] py-10 px-8 md:px-16 bg-white/[0.06]">
+    <div className="border-y border-white/[0.06] bg-[#0c0c0c] py-10 px-8 md:px-16">
       <dl className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 text-center">
         {STATS.map(({ stat, label }, i) => (
           <div
@@ -109,7 +109,7 @@ function StatBar() {
               md:border-l md:first:border-l-0
             `}
           >
-            <dd className="text-4xl md:text-5xl font-black text-[#00f0ff] leading-none">
+            <dd className="text-4xl md:text-5xl font-black text-[#00A3FF] leading-none">
               {stat}
             </dd>
             <dt className="text-gray-500 text-xs uppercase tracking-widest mt-2 font-mono">
@@ -127,11 +127,11 @@ function BottomCTA() {
     <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00f0ff]/5 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00A3FF]/5 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00f0ff]/8 blur-[100px] rounded-full"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00A3FF]/8 blur-[100px] rounded-full"
       />
       <div className="relative">
         <p
@@ -141,11 +141,11 @@ function BottomCTA() {
           Let's get started
         </p>
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
-          Your Car Deserves <span className="text-[#00f0ff]">Better.</span>
+          Your Car Deserves <span className="text-(--textcolor)">Better.</span>
         </h2>
         <Link
           href="/support"
-          className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
+          className="inline-flex items-center gap-3 bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
         >
           Book Now
           <span
@@ -175,8 +175,10 @@ export default function Home() {
           loop
           muted
           playsInline
+          preload="auto"
           aria-hidden="true"
           title="Decorative background video of a car driving"
+          // poster="/blueGTR.webp"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
         <div
@@ -189,12 +191,12 @@ export default function Home() {
         />
 
         <div className="relative z-10 px-8 md:px-20 max-w-5xl">
-          <p className="text-[#00f0ff] text-[10px] uppercase tracking-[0.22em] font-mono mb-5">
+          <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-5">
             New York City — Full Service Auto Shop
           </p>
 
           <h1 className="text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter">
-            Built for <span className="text-[#00f0ff]">Drivers.</span>
+            Built for <span className="text-[#00A3FF]">Drivers.</span>
             <br />
             Not Just Cars.
           </h1>
@@ -284,11 +286,7 @@ export default function Home() {
             id="advantage-heading"
             className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
           >
-            The <span className="italic text-[#14007e]">RPM</span>{" "}
-            <span className="font-rocksalt text-[#9d9d9b] text-3xl md:text-4xl">
-              nyc
-            </span>{" "}
-            Advantage
+            The RPM Advantage
           </h2>
         </div>
 

@@ -70,7 +70,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`inline-block transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 ${
                   isActive(link.href, link.exact)
-                    ? "text-[#00f0ff]"
+                    ? "text-[#00A3FF]"
                     : "text-gray-300"
                 }`}
               >

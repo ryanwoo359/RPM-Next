@@ -36,7 +36,7 @@ function InfoBlock({
   return (
     <div className="border border-white/[0.06] rounded-xl bg-[#111] p-6 space-y-3">
       <div className="flex items-center gap-2">
-        <span className="text-[#00f0ff]">{icon}</span>
+        <span className="text-[#00A3FF]">{icon}</span>
         <h3 className="text-[10px] uppercase tracking-widest font-mono text-gray-500">
           {label}
         </h3>
@@ -80,17 +80,14 @@ export default function Support() {
     <div className="text-white overflow-x-hidden">
       {/* ── PAGE HEADER ── */}
       <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A3FF]/10 blur-[120px] rounded-full" />
 
-        <p className="animate-fade-in text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
+        <p className="animate-fade-in text-[#00A3FF] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
           Get in touch
         </p>
 
-        <h1
-          className="animate-fade-up text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
-          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-        >
-          Book a <span className="text-[#00f0ff]">Service</span>
+        <h1 className="animate-fade-up text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter">
+          Book a <span className="text-[#00A3FF]">Service</span>
         </h1>
 
         <p className="animate-fade-in-delay mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide">
@@ -106,9 +103,9 @@ export default function Support() {
           <div className="lg:col-span-3 animate-fade-up">
             {submitted ? (
               <div className="animate-scale-in flex flex-col items-center justify-center text-center py-24 border border-white/[0.06] rounded-xl bg-[#111]">
-                <div className="w-14 h-14 rounded-full border-2 border-[#00f0ff] flex items-center justify-center mb-6">
+                <div className="w-14 h-14 rounded-full border-2 border-[#00A3FF] flex items-center justify-center mb-6">
                   <svg
-                    className="w-6 h-6 text-[#00f0ff]"
+                    className="w-6 h-6 text-[#00A3FF]"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -121,10 +118,7 @@ export default function Support() {
                     />
                   </svg>
                 </div>
-                <h2
-                  className="text-3xl font-black uppercase tracking-tight mb-3"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                >
+                <h2 className="text-3xl font-black uppercase tracking-tight mb-3">
                   We Got Your Request
                 </h2>
                 <p className="text-gray-400 text-sm max-w-sm">
@@ -188,7 +182,7 @@ export default function Support() {
                       name="service"
                       value={form.service}
                       onChange={console.log}
-                      className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00f0ff]/50 transition-colors duration-200 appearance-none"
+                      className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00A3FF]/50 transition-colors duration-200 appearance-none"
                     >
                       <option value="" disabled>
                         Select a service…
@@ -213,13 +207,13 @@ export default function Support() {
                     onChange={console.log}
                     rows={5}
                     placeholder="Tell us about your car, what's going on, and any dates that work for you…"
-                    className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00f0ff]/50 transition-colors duration-200 resize-none"
+                    className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00A3FF]/50 transition-colors duration-200 resize-none"
                   />
                 </div>
 
                 <button
                   onClick={handleSubmit}
-                  className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-10 py-4 text-black text-xs font-bold uppercase tracking-widest group"
+                  className="inline-flex items-center gap-3 bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-10 py-4 text-black text-xs font-bold uppercase tracking-widest group"
                 >
                   Send Request
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -339,7 +333,7 @@ function Field({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00f0ff]/50 transition-colors duration-200"
+        className="bg-[#111] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00A3FF]/50 transition-colors duration-200"
       />
     </div>
   );
