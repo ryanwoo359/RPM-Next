@@ -15,7 +15,7 @@ export default function ServiceCard({
   link,
 }: ServiceCardProps) {
   return (
-    <div className="group relative grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-xl bg-[#0a0a0a] shadow-xl">
+    <div className="group relative grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-xl bg-[#0a0a0a]">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={image}
@@ -48,7 +48,7 @@ export default function ServiceCard({
         {link && (
           <Link
             href={link}
-            className="group/link mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00f0ff] transition-opacity hover:opacity-75"
+            className="group/link mt-4 after:absolute after:inset-0 after:content-[''] inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#00A3FF] transition-opacity hover:opacity-75"
           >
             Learn More
             <span className="transition-transform duration-300 group-hover/link:translate-x-1">

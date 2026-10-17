@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 
 import picture from "@/public/picture.webp";
@@ -44,11 +43,19 @@ const items: GalleryItem[] = [
   { src: work, alt: "Shop work", tag: "Aesthetic" },
 ];
 
-const spanClass: Record<string, string> = {
+const spanClass: Record<NonNullable<GalleryItem["span"]>, string> = {
   wide: "md:col-span-2",
   tall: "md:row-span-2",
   large: "md:col-span-2 md:row-span-2",
 };
+
+// Rendered tile widths: 1 column (~90vw) on mobile, 4 columns from md up,
+// where wide/large tiles span 2 of them.
+function tileSizes(span: GalleryItem["span"]) {
+  return span === "wide" || span === "large"
+    ? "(min-width: 768px) 45vw, 90vw"
+    : "(min-width: 768px) 23vw, 90vw";
+}
 
 export default function Gallery() {
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
@@ -65,17 +72,14 @@ export default function Gallery() {
     <div className="text-white overflow-x-hidden">
       {/* ── HERO ── */}
       <div className="relative flex flex-col items-center justify-center pt-48 pb-24 px-6 overflow-hidden">
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00f0ff]/10 blur-[120px] rounded-full" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A3FF]/10 blur-[120px] rounded-full" />
 
-        <p className="text-[#00f0ff] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
+        <p className="text-[#00A3FF] text-xs uppercase tracking-[0.25em] mb-4 font-mono">
           Our Work
         </p>
 
-        <h1
-          className="text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter"
-          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-        >
-          Featured <span className="text-[#00f0ff]">Builds</span>
+        <h1 className="text-5xl md:text-7xl font-black uppercase text-center leading-none tracking-tighter">
+          Featured <span className="text-[#00A3FF]">Builds</span>
         </h1>
 
         <p className="mt-5 text-gray-400 text-sm md:text-base text-center max-w-xl font-light tracking-wide">
@@ -86,7 +90,7 @@ export default function Gallery() {
 
       {/* ── GRID ── */}
       <div className="max-w-[90vw] mx-auto md:px-16 pb-32">
-        <ul className="grid grid-cols-1 md:grid-cols-4 auto-rows md:auto-rows-[220px] gap-3 md:grid-flow-dense">
+        <ul className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[220px] gap-3 md:grid-flow-dense">
           {items.map((item, i) => (
             <li
               key={`${item.alt}-${i}`}
@@ -99,8 +103,9 @@ export default function Gallery() {
                 src={item.src}
                 alt={item.alt}
                 fill
-                decoding="async"
-                loading="lazy"
+                sizes={tileSizes(item.span)}
+                placeholder="blur"
+                loading={i < 2 ? "eager" : "lazy"}
                 draggable={false}
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
@@ -110,7 +115,7 @@ export default function Gallery() {
 
               {/* tag + label */}
               <div className="absolute bottom-0 left-0 w-full p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <span className="inline-block bg-[#00f0ff] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mb-1">
+                <span className="inline-block bg-[#00A3FF] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mb-1">
                   {item.tag}
                 </span>
                 <p className="text-white text-sm font-semibold">{item.alt}</p>
@@ -150,17 +155,17 @@ export default function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              decoding="async"
-              loading="lazy"
-              draggable="false"
               src={lightbox.src}
               alt={lightbox.alt}
-              className="w-full max-h-[80vh] object-contain rounded-xl"
+              sizes="(min-width: 944px) 896px, 100vw"
+              placeholder="blur"
+              draggable={false}
+              className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
             />
 
             <div className="mt-3 flex items-center justify-between">
               <div>
-                <span className="inline-block bg-[#00f0ff] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mr-2">
+                <span className="inline-block bg-[#00A3FF] text-black text-[9px] uppercase tracking-widest font-bold font-mono px-2 py-0.5 mr-2">
                   {lightbox.tag}
                 </span>
                 <span className="text-white text-sm">{lightbox.alt}</span>
@@ -176,32 +181,6 @@ export default function Gallery() {
           </div>
         </div>
       )}
-
-      {/* ── BOTTOM CTA ── */}
-      <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00f0ff]/5 to-transparent" />
-        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-[#00f0ff]/8 blur-[100px] rounded-full" />
-        <div className="relative">
-          <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4">
-            Want results like these?
-          </p>
-          <h2
-            className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Your Build Could Be <span className="text-[#00f0ff]">Next.</span>
-          </h2>
-          <Link
-            href="/support"
-            className="inline-flex items-center gap-3 bg-[#00f0ff] hover:bg-[#00c8d4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
-          >
-            Book a Service
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }
