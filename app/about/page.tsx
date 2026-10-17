@@ -7,19 +7,35 @@ import storeFront from "@/public/rpm-storefront.webp";
 
 const values = [
   {
-    number: "01",
     title: "Honest Work",
     body: "No upsells, no fluff. We tell you what your car needs and why — nothing more.",
+    commitments: ["Every repair explained", "No unnecessary upsells"],
+    icon: (
+      <>
+        <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
+        <path d="M9 12l2 2 4-4" />
+      </>
+    ),
   },
   {
-    number: "02",
     title: "Built to Last",
     body: "We treat every repair like it's going on our own car. Quality parts, quality labour.",
+    commitments: ["Quality parts only", "Done like it's our own car"],
+    icon: (
+      <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z" />
+    ),
   },
   {
-    number: "03",
     title: "Driver First",
     body: "From weekend warriors to daily commuters — we respect every build and every budget.",
+    commitments: ["Every build welcome", "Options for every budget"],
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="2" />
+        <path d="M3.5 10.5H10M14 10.5h6.5M12 14v7" />
+      </>
+    ),
   },
 ];
 
@@ -102,57 +118,110 @@ export default function About() {
               attention, regardless of make, model, or mileage.
             </p>
 
-            <div className="flex gap-8 pt-2">
+            <dl className="mx-auto grid w-full max-w-md grid-cols-3 divide-x divide-white/[0.08] rounded-xl border border-white/[0.08] bg-[#0f0f0f] md:mx-0">
               {[
-                { stat: "1,000+", label: "Cars Serviced" },
-                { stat: "50+", label: "Marques" },
-                { stat: "4.5★", label: "Avg Rating" },
+                { value: "1,000", suffix: "+", label: "Cars Serviced" },
+                { value: "50", suffix: "+", label: "Marques" },
+                { value: "4.5", suffix: "★", label: "Avg Rating" },
               ].map((s) => (
-                <div key={s.label}>
-                  <p className="text-2xl font-black text-white leading-none">
-                    {s.stat}
-                  </p>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mt-1">
+                <div
+                  key={s.label}
+                  className="flex flex-col-reverse items-center px-3 py-4 text-center"
+                >
+                  <dt className="mt-1.5 text-[10px] uppercase tracking-widest text-gray-500 font-mono">
                     {s.label}
-                  </p>
+                  </dt>
+                  <dd className="text-2xl font-black leading-none text-white">
+                    {s.value}
+                    <span className="text-[#00A3FF]">{s.suffix}</span>
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* ── VALUES ── */}
-      <section className="border-t border-b border-white/[0.06] bg-[#0c0c0c]">
-        <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-28">
-          <div className="mb-14">
-            <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
-              What drives us
+      {/* ── CORE VALUES ── */}
+      <section
+        aria-labelledby="values-heading"
+        className="border-y border-white/[0.06] bg-[#0c0c0c]"
+      >
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-20 md:py-28">
+          <div className="mb-2 flex flex-wrap items-end justify-between gap-6 border-b border-white/[0.07] pb-6">
+            <div>
+              <p className="text-[#00A3FF] text-[10px] uppercase tracking-[0.22em] font-mono mb-3">
+                What drives us
+              </p>
+              <h2
+                id="values-heading"
+                className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none"
+              >
+                Our Core Values
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-gray-400 leading-relaxed">
+              The principles behind every job that comes through our doors.
             </p>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6">
-              Our Values
-            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06]">
+          <ul className="divide-y divide-white/[0.08]">
             {values.map((item) => (
-              <div
-                key={item.number}
-                className="bg-[#0c0c0c] p-10 group hover:bg-[#111] transition-colors duration-300"
+              <li
+                key={item.title}
+                className="group grid grid-cols-1 gap-6 py-10 md:py-12 lg:grid-cols-12 lg:gap-10"
               >
-                <span className="text-6xl font-black text-white/[0.12] leading-none select-none">
-                  {item.number}
-                </span>
-                <div className="mt-2 h-px w-8 bg-[#00A3FF] transition-all duration-500 group-hover:w-16" />
-                <h3 className="mt-4 text-xl font-bold uppercase tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-gray-400 text-sm leading-relaxed">
+                <div className="flex items-center gap-5 lg:col-span-4">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[#00A3FF]/25 bg-[#00A3FF]/10 text-[#00A3FF] transition-colors duration-300 group-hover:bg-[#00A3FF]/15">
+                    <svg
+                      className="h-7 w-7"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      {item.icon}
+                    </svg>
+                  </span>
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-none transition-colors duration-300 group-hover:text-[#00A3FF]">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <p className="text-gray-400 text-base md:text-lg leading-relaxed lg:col-span-5 lg:self-center">
                   {item.body}
                 </p>
-              </div>
+
+                <ul className="space-y-2 lg:col-span-3 lg:self-center">
+                  {item.commitments.map((commitment) => (
+                    <li
+                      key={commitment}
+                      className="flex items-center gap-3 text-sm text-gray-300"
+                    >
+                      <svg
+                        className="h-3.5 w-3.5 shrink-0 text-[#00A3FF]"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M2 7l3.5 3.5L12 3.5"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      {commitment}
+                    </li>
+                  ))}
+                </ul>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
