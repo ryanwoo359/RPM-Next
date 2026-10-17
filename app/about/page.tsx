@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import EmployeeCard from "@/components/card/EmployeeCard";
 
 import tommie from "@/public/tommie.webp";
@@ -59,9 +60,11 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           <div className="flex-1 relative">
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-[#00A3FF]/20 to-transparent" />
-            <img
-              src={storeFront.src}
+            <Image
+              src={storeFront}
               alt="RPM NYC store front"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              placeholder="blur"
               className="relative rounded-2xl w-full h-auto object-cover"
               draggable={false}
             />
@@ -170,6 +173,7 @@ export default function About() {
               key={`${member.title}-${i}`}
               title={member.title}
               role={member.role}
+              description={member.description}
               image={member.image}
             />
           ))}
