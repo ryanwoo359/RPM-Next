@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ServiceCard from "@/components/card/ServiceCard";
+import FeaturedServiceCard from "@/components/card/FeaturedServiceCard";
+import StatsBar from "@/components/StatsBar";
 
 import coolingSystem from "@/public/cooling-system.png";
 import dynoTuning from "@/public/dyno-tuning.png";
@@ -7,49 +8,66 @@ import ecuTuning from "@/public/ecu-tuning.png";
 
 const EXPERTISE = [
   {
+    tag: "Maintenance",
     title: "General Maintenance",
     description: "Factory-spec service with the care your car deserves.",
+    highlights: ["Oil & Filters", "Fluids", "Multi-Point Inspection"],
     image: coolingSystem,
+    href: "/services/general-maintenance",
   },
   {
+    tag: "Performance",
     title: "Performance Upgrades",
     description: "More power, better handling — built for the street or track.",
+    highlights: ["Dyno Tuning", "Coilovers", "Big Brakes"],
     image: dynoTuning,
+    href: "/services/dyno-tuning",
   },
   {
+    tag: "Diagnostics",
     title: "Diagnostics & Repair",
     description: "Pinpoint any fault fast with our full OBD-II suite.",
+    highlights: ["OBD-II Scan", "Electrical", "Engine Repair"],
     image: ecuTuning,
+    href: "/services/ecu-diagnostics",
   },
-];
-
-const STATS = [
-  { stat: "25+", label: "Years in NYC" },
-  { stat: "1,000+", label: "Cars Serviced" },
-  { stat: "50+", label: "Services" },
-  { stat: "4.5★", label: "Average Rating" },
 ];
 
 const ADVANTAGES = [
   {
-    number: 1,
     title: "NYC Specialists",
     body: "We know the roads, the climate, and the demands of driving in the five boroughs.",
+    icon: (
+      <>
+        <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
+        <circle cx="12" cy="9.5" r="2.5" />
+      </>
+    ),
   },
   {
-    number: 2,
     title: "No BS Pricing",
     body: "Transparent quotes up front. No hidden labour fees, no surprise line items.",
+    icon: (
+      <>
+        <path d="M3 12V4h8l9.5 9.5-8 8L3 12z" />
+        <circle cx="7.5" cy="7.5" r="1.5" />
+      </>
+    ),
   },
   {
-    number: 3,
     title: "Dealer-Level Tech",
     body: "Factory scan tools and trained technicians across European, Asian, and domestic marques.",
+    icon: (
+      <>
+        <rect x="7" y="7" width="10" height="10" rx="1.5" />
+        <path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4" />
+      </>
+    ),
   },
   {
-    number: 4,
     title: "Fast Turnaround",
     body: "Most jobs same-day or next-day. We respect your time as much as your car.",
+    icon: <path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" />,
   },
 ];
 
@@ -95,36 +113,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function StatBar() {
-  return (
-    <div className="border-y border-white/[0.06] bg-[#0c0c0c] py-10 px-8 md:px-16">
-      <dl className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 text-center">
-        {STATS.map(({ stat, label }, i) => (
-          <div
-            key={label}
-            className={`
-              py-4 px-8
-              ${i % 2 !== 0 ? "border-l border-white/[0.06]" : ""}
-              ${i >= 2 ? "border-t border-white/[0.06] md:border-t-0" : ""}
-              md:border-l md:first:border-l-0
-            `}
-          >
-            <dd className="text-4xl md:text-5xl font-black text-[#00A3FF] leading-none">
-              {stat}
-            </dd>
-            <dt className="text-gray-500 text-xs uppercase tracking-widest mt-2 font-mono">
-              {label}
-            </dt>
-          </div>
-        ))}
-      </dl>
-    </div>
-  );
-}
-
 function BottomCTA() {
   return (
-    <div className="relative border-t border-white/[0.06] py-28 px-8 text-center overflow-hidden">
+    <div className="relative border-t border-white/[0.06] py-20 md:py-28 px-8 text-center overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00A3FF]/5 to-transparent"
@@ -138,7 +129,7 @@ function BottomCTA() {
           aria-hidden="true"
           className="text-[10px] uppercase tracking-widest text-gray-500 font-mono mb-4"
         >
-          Let's get started
+          Let&apos;s get started
         </p>
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
           Your Car Deserves <span className="text-(--textcolor)">Better.</span>
@@ -220,10 +211,10 @@ export default function Home() {
       {/* EXPERTISE */}
       <section
         aria-labelledby="expertise-heading"
-        className="max-w-[1400px] mx-auto px-8 md:px-16 py-32"
+        className="max-w-[1400px] mx-auto px-8 md:px-16 py-20 md:py-28 lg:py-32"
       >
-        <div className="mb-14">
-          <SectionLabel>What we're good at</SectionLabel>
+        <div className="mb-10 md:mb-14">
+          <SectionLabel>What we&apos;re good at</SectionLabel>
           <div className="flex items-end justify-between border-b border-white/[0.07] pb-6">
             <h2
               id="expertise-heading"
@@ -252,12 +243,7 @@ export default function Home() {
               key={item.title}
               className={i === 1 ? "md:scale-[1.03] md:z-10 relative" : ""}
             >
-              <ServiceCard
-                title={item.title}
-                description={item.description}
-                image={item.image}
-                link="/services"
-              />
+              <FeaturedServiceCard {...item} />
             </div>
           ))}
         </div>
@@ -273,88 +259,56 @@ export default function Home() {
         </div>
       </section>
 
-      <StatBar />
+      <StatsBar />
 
       {/* RPM ADVANTAGE */}
       <section
         aria-labelledby="advantage-heading"
-        className="max-w-[1400px] mx-auto px-8 md:px-16 py-32"
+        className="max-w-[1400px] mx-auto px-8 md:px-16 py-20 md:py-28 lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center lg:py-28"
       >
-        <div className="mb-14">
+        <div className="mb-10 md:mb-14">
           <SectionLabel>Why choose us</SectionLabel>
           <h2
             id="advantage-heading"
-            className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none border-b border-white/[0.07] pb-6"
           >
             The RPM Advantage
           </h2>
         </div>
 
-        <div className="relative py-4">
-          <div
-            aria-hidden="true"
-            className="absolute left-[28px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#00f0ff]/30 to-transparent md:hidden"
-          />
-
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none">
-            {ADVANTAGES.map((item) => (
-              <li
-                key={item.number}
-                className="relative group flex gap-5 p-7 rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.04] to-transparent hover:border-[#00f0ff]/30 hover:from-[#00f0ff]/[0.05] transition-all duration-500 cursor-default"
-              >
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ boxShadow: "inset 0 0 40px 0 rgba(0,240,255,0.04)" }}
-                />
-
-                <div className="flex-shrink-0 flex flex-col items-center gap-2 pt-1">
-                  <div className="w-8 h-8 rounded-full border border-[#00f0ff]/40 bg-[#00f0ff]/10 flex items-center justify-center group-hover:bg-[#00f0ff]/20 group-hover:border-[#00f0ff]/70 transition-all duration-300">
-                    <svg
-                      className="w-3.5 h-3.5 text-[#00f0ff]"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M2 7l3.5 3.5L12 3.5"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <div
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+          {ADVANTAGES.map((item) => (
+            <li
+              key={item.title}
+              className="group rounded-2xl border border-white/[0.08] bg-[#0f0f0f] p-7 md:p-8 lg:p-10 shadow-lg shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
+            >
+              <div className="flex items-start gap-5">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[#00A3FF]/25 bg-[#00A3FF]/10 text-[#00A3FF] transition-colors duration-300 group-hover:bg-[#00A3FF]/15">
+                  <svg
+                    className="h-7 w-7"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     aria-hidden="true"
-                    className="flex-1 w-px bg-gradient-to-b from-[#00f0ff]/20 to-transparent"
-                  />
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span
-                      aria-hidden="true"
-                      className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#00f0ff]/60"
-                    >
-                      {String(item.number).padStart(2, "0")}
-                    </span>
-                    <div
-                      aria-hidden="true"
-                      className="h-px flex-1 bg-white/[0.06]"
-                    />
-                  </div>
-                  <h3 className="text-lg font-bold uppercase tracking-tight text-white mb-2">
+                  >
+                    {item.icon}
+                  </svg>
+                </span>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight leading-none text-white">
                     {item.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400 transition-colors duration-300">
+                  <p className="mt-3 text-gray-400 leading-relaxed">
                     {item.body}
                   </p>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <BottomCTA />
