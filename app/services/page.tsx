@@ -31,7 +31,7 @@ export default function Services() {
       </div>
 
       {/* ── SERVICE CATEGORIES ── */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-16 pb-32 space-y-28">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-16 pt-12 md:pt-0 pb-32 space-y-28">
         {serviceCategories.map((category) => (
           <div key={category.id}>
             {/* Category header */}

@@ -90,16 +90,16 @@ export default async function ServiceDetail(
               {service.description}
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <Link
                 href="/support"
-                className="inline-flex items-center justify-center gap-3 rounded-md bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-8 py-4 text-black text-xs font-bold uppercase tracking-widest"
+                className="inline-flex items-center justify-center rounded-md bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-3 py-3.5 sm:px-8 sm:py-4 text-center text-black text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest"
               >
                 Request Service
               </Link>
               <a
                 href="tel:7187403277"
-                className="inline-flex items-center justify-center gap-3 rounded-md border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors duration-300 px-8 py-4 text-xs font-bold uppercase tracking-widest"
+                className="inline-flex items-center justify-center rounded-md border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors duration-300 px-3 py-3.5 sm:px-8 sm:py-4 text-center text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest"
               >
                 Contact Support
               </a>
