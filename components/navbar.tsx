@@ -115,7 +115,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className={`text-3xl transition-colors duration-300 ${
                 isActive(link.href, link.exact)
-                  ? "text-[#00f0ff] font-semibold"
+                  ? "text-[#00A3FF] font-semibold"
                   : "text-gray-300 hover:text-white hover:font-semibold"
               }`}
             >
