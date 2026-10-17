@@ -1,10 +1,48 @@
 import Link from "next/link";
+import Image from "next/image";
 import FeaturedServiceCard from "@/components/card/FeaturedServiceCard";
 import StatsBar from "@/components/StatsBar";
 
 import coolingSystem from "@/public/cooling-system.png";
 import dynoTuning from "@/public/dyno-tuning.png";
 import ecuTuning from "@/public/ecu-tuning.png";
+
+import blueGtr from "@/public/blueGTR.webp";
+import gr86 from "@/public/BlueGr86.webp";
+import pinkWrx from "@/public/pinkWRX.webp";
+import featuredBuild from "@/public/picture.webp";
+
+// Bento layout on desktop: one 2x2 hero tile, two 1x1 tiles, one 2x1 tile.
+const FEATURED_BUILDS = [
+  {
+    src: blueGtr,
+    alt: "Sky blue Nissan GTR",
+    tag: "Car Wrap",
+    layout: "md:col-span-2 md:row-span-2",
+    sizes: "(min-width: 768px) 50vw, 100vw",
+  },
+  {
+    src: gr86,
+    alt: "Blue GR86",
+    tag: "Aesthetic",
+    layout: "",
+    sizes: "(min-width: 768px) 25vw, 100vw",
+  },
+  {
+    src: pinkWrx,
+    alt: "Pink WRX STI Sports Wagon",
+    tag: "Car Wrap",
+    layout: "",
+    sizes: "(min-width: 768px) 25vw, 100vw",
+  },
+  {
+    src: featuredBuild,
+    alt: "Featured full build",
+    tag: "Full Build",
+    layout: "md:col-span-2",
+    sizes: "(min-width: 768px) 50vw, 100vw",
+  },
+];
 
 const EXPERTISE = [
   {
@@ -115,7 +153,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function BottomCTA() {
   return (
-    <div className="relative border-t border-white/[0.06] py-20 md:py-28 px-8 text-center overflow-hidden">
+    <div className="relative py-20 md:py-28 px-8 text-center overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00A3FF]/5 to-transparent"
@@ -134,18 +172,9 @@ function BottomCTA() {
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-8">
           Your Car Deserves <span className="text-(--textcolor)">Better.</span>
         </h2>
-        <Link
-          href="/support"
-          className="inline-flex items-center gap-3 bg-[#00A3FF] hover:bg-[#0088D4] transition-colors duration-300 px-12 py-4 text-black text-xs font-bold uppercase tracking-widest group"
-        >
+        <CTAButton href="/support" variant="primary">
           Book Now
-          <span
-            aria-hidden="true"
-            className="transition-transform duration-300 group-hover:translate-x-1"
-          >
-            →
-          </span>
-        </Link>
+        </CTAButton>
       </div>
     </div>
   );
@@ -201,8 +230,8 @@ export default function Home() {
             <CTAButton href="/support" variant="primary">
               Contact us
             </CTAButton>
-            <CTAButton href="/gallery" variant="ghost">
-              Featured Builds
+            <CTAButton href="/services" variant="ghost">
+              Explore Services
             </CTAButton>
           </div>
         </div>
@@ -249,13 +278,68 @@ export default function Home() {
         </div>
 
         <div className="mt-10 flex md:hidden justify-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 transition-colors px-8 py-3 text-xs font-bold uppercase tracking-widest"
-          >
+          <CTAButton href="/services" variant="ghost">
             All Services
-            <span aria-hidden="true">→</span>
-          </Link>
+          </CTAButton>
+        </div>
+      </section>
+
+      {/* FEATURED BUILDS */}
+      <section
+        aria-labelledby="builds-heading"
+        className="max-w-[1400px] mx-auto px-8 md:px-16 pb-20 md:pb-28 lg:pb-32"
+      >
+        <div className="mb-10 md:mb-14">
+          <SectionLabel>Our work</SectionLabel>
+          <div className="flex flex-wrap items-end justify-between gap-6 border-b border-white/[0.07] pb-6">
+            <h2
+              id="builds-heading"
+              className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none"
+            >
+              Featured Builds
+            </h2>
+            <p className="max-w-sm text-sm text-gray-400 leading-relaxed">
+              Wraps, full builds, and upgrades that left our shop ready to turn
+              heads.
+            </p>
+          </div>
+        </div>
+
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[240px] lg:auto-rows-[280px]">
+          {FEATURED_BUILDS.map((build) => (
+            <li
+              key={build.alt}
+              className={`group relative h-[260px] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111] md:h-auto ${build.layout}`}
+            >
+              <Image
+                src={build.src}
+                alt={build.alt}
+                fill
+                sizes={build.sizes}
+                placeholder="blur"
+                draggable={false}
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"
+              />
+              <div className="absolute bottom-0 left-0 p-5 md:p-6">
+                <span className="inline-block rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md">
+                  {build.tag}
+                </span>
+                <p className="mt-2 text-lg font-bold uppercase tracking-tight text-white">
+                  {build.alt}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 md:mt-12 flex justify-center">
+          <CTAButton href="/gallery" variant="primary">
+            View Full Gallery
+          </CTAButton>
         </div>
       </section>
 
