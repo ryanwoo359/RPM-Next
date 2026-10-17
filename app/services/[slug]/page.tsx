@@ -73,6 +73,7 @@ export default async function ServiceDetail(
               alt={service.title}
               fill
               preload
+              placeholder="blur"
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />

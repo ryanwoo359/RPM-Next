@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
+
+import locationIcon from "@/public/location.svg";
+import phoneIcon from "@/public/phone.svg";
+import clockIcon from "@/public/clock.svg";
+import heartIcon from "@/public/heart.svg";
 
 const services = [
   "General Maintenance",
@@ -339,20 +345,32 @@ function Field({
   );
 }
 
-function MapPinIcon() {
+// Decorative icons: empty alt so screen readers skip them.
+function Icon({ src }: { src: StaticImageData }) {
   return (
-    <img draggable={false} src="/location.svg" className="w-4 h-4" alt="" />
+    <Image
+      src={src}
+      alt=""
+      width={16}
+      height={16}
+      draggable={false}
+      className="w-4 h-4"
+    />
   );
 }
 
+function MapPinIcon() {
+  return <Icon src={locationIcon} />;
+}
+
 function PhoneIcon() {
-  return <img draggable={false} src="/phone.svg" className="w-4 h-4" alt="" />;
+  return <Icon src={phoneIcon} />;
 }
 
 function ClockIcon() {
-  return <img draggable={false} src="/clock.svg" className="w-4 h-4" alt="" />;
+  return <Icon src={clockIcon} />;
 }
 
 function StarIcon() {
-  return <img draggable={false} src="/heart.svg" className="w-4 h-4" alt="" />;
+  return <Icon src={heartIcon} />;
 }

@@ -6,6 +6,8 @@ type ServiceCardProps = {
   description?: string;
   image: StaticImageData | string;
   link?: string;
+  /** Rendered image width per breakpoint; defaults to the services page grid. */
+  sizes?: string;
 };
 
 export default function ServiceCard({
@@ -13,6 +15,7 @@ export default function ServiceCard({
   description,
   image,
   link,
+  sizes = "(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
 }: ServiceCardProps) {
   return (
     <div className="group relative grid h-full grid-rows-[auto_1fr] overflow-hidden rounded-xl bg-[#0a0a0a]">
@@ -21,8 +24,8 @@ export default function ServiceCard({
           src={image}
           alt={title}
           fill
-          decoding="async"
-          loading="lazy"
+          sizes={sizes}
+          placeholder={typeof image === "string" ? "empty" : "blur"}
           draggable={false}
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
